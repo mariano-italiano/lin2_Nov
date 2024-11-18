@@ -1,249 +1,383 @@
-    1  visudo 
-    2  vi .bashrc
-    3  systemctl status firewalld.service 
-    4  systemctl disable firewalld.service 
-    5  geten
-    6  getenforce 
-    7  ls
-    8  pwd
-    9  vi .bashrc 
-   10  source .bashrc 
-   11  dnf update
-   12  reboot
-   13  vi .bashrc 
-   14  source .bashrc
-   15  vi .bashrc 
-   16  echo $PS1
-   17  vi .bashrc 
-   18  source .bashrc
-   19  visudo
-   20  vi test
-   21  vivi .vimrc
-   22  vi .vimrc
-   23  vi /etc/selinux/config 
-   24  systemctl status firewalld.service 
-   25  reboot
-   26  vi /etc/ssh/sshd_config 
-   27  useradd adam
-   28  passwd adam
-   29  systemctl restart sshd
-   30  vi /etc/ssh/sshd_config 
-   31  systemctl restart sshd
-   32  vi /etc/ssh/sshd_config 
-   33  systemctl restart sshd
-   34  vi /etc/ssh/sshd_config 
-   35  systemctl restart sshd
-   36  vi /etc/ssh/sshd_config 
-   37  systemctl restart sshd
-   38  ls -la
-   39  ls -la > plik1
-   40  cat plik1
-   41  ls -la 1> plik1
-   42  echo $? 
-   43  less plik1
-   44   ls- la
-   45  ls -la
-   46  ls -la 1>> plik1
-   47  less plik1
-   48  cat test
-   49  echo $?
-   50  cat test > output
-   51  cat output 
-   52  cat test 2> output
-   53  cat output 
-   54  vi output 
-   55  sort < output 
-   56  cat output | sort 
-   57  sort 0< output 
-   58  ps -u student
-   59  vi lab1.sh
-   60  env
-   61  ls -la ~/
-   62  ls -la $HOME/
-   63  vi lab1.sh
-   64  chmod +x lab1.sh 
-   65  ./lab1.sh 
-   66  ls -la
-   67  ls -la copy.log
-   68  cat copy.log
-   69  cat copy.err
-   70  man cp 
-   71  ls -la 
-   72  cat output 
-   73  grep ^test output 
-   74  grep te?t output 
-   75  echo "To jest przyklad" 
-   76  echo "To jest przyklad"  | sed '/jest/p'
-   77  echo "To jest przyklad"  | sed -n '/jest/p'
-   78  sed --help
-   79  echo "To jest przyklad"  | sed -n '/auto/p'
-   80  echo "To jest przyklad"  | awk  '/auto/{ print $0}'
-   81  echo "To jest przyklad"  | awk  '/przyklad/{ print $0}'
-   82  echo "To jest przyklad"  | awk  '/Przyklad/{ print $0}'
-   83  vi dane
-   84  cat dane
-   85  vi dane
-   86  cat dane
-   87  vi dane
-   88  cat dane 
-   89  sed -n '/.sh/p' dane
-   90  vi dane 
-   91  sed -n '/.sh/p' dane
-   92  sed -n '/[cbdw]ash/p' dane
-   93  awk '/[cbdw]ash/{ print $0 } ' dane 
-   94  ps -ef
-   95  ps -ef | awk '{ print $3 } '
-   96  awk '/[cbdw]ash/{ print $0 } ' dane 
-   97  cat dane 
-   98  awk '/[cbdw]ash/{ print $0 } ' dane 
-   99  awk '/^[cbdw]ash/{ print $0 } ' dane 
-  100  sed -n '/^[cbdw]ash/p' dane
-  101  sed -n '/[^cbdw]ash/p' dane
-  102  sed -n '/[cbdw]ash/p' dane
-  103  echo "To jest przyklad" | sed -n '/[Tt]o/p'
-  104  echo "To jest przyklad" | sed -n '/[^Tt]o/p'
-  105  sed -n '/^[cbdw]sh/p' dane
-  106  sed -n '/[^cbdw]sh/p' dane
-  107  cat dane
-  108  sed -n '/[0-9]/p' dane
-  109  sed -n '/[a-zA-Z]/p' dane
-  110  echo "To jest przyklad" | sed -n '/t?/p'
-  111  echo "To jest przyklad" | sed -n '/[Tt]?/p'
-  112  echo "To jest przyklad" | sed -n '/[Tt]o?/p'
-  113  echo "To jest przyklad" | sed -n -r '/[Tt]o?/p'
-  114  man sed
-  115  echo "To jest przyklad" | sed -n -r '/[Tt]?/p'
-  116  man sed
-  117  echo "To jest przyklad" | grep -E "[Tt]?"
-  118  alias 
-  119  echo "To jest przyklad" | grep -E "[Tt]o?"
-  120  echo "To jest przyklad" | grep -E "[Tt]o+"
-  121  echo "To jest przyklad" | grep -E "[Tt]+"
-  122  cat dane
-  123  sed 's/ksh/bash/' dane
-  124  sed 's//bin/bash/bin/zsh/' dane
-  125  sed 's|/bin/bash|/bin/zsh|' dane
-  126  sed 's2/bin/bash2/bin/zsh2' dane
-  127  cat dane
-  128  sed -i 's2/bin/bash2/bin/zsh2' dane
-  129  cat dane
-  130  sed 's/foo/nowefoo/' dane
-  131  sed 's/foo/nowefoo/gI' dane
-  132  sed 's/\b[0-9]\{4\}\b/liczba 4-cyfrowa/gI' dane
-  133  sed 's/\b[0-9]\{2\}\b/liczba 4-cyfrowa/gI' dane
-  134  sed 's/\b[0-9]\{4\}\b/liczba 4-cyfrowa &/gI' dane
-  135  cat dane | grep linia
-  136  cat dane | grep foo
-  137  cat dane | grep foo -i
-  138  grep -i foo dane 
-  139  grep -v foo dane 
-  140  vi /etc/ssh/sshd_config
-  141  grep -v "#" /etc/ssh/sshd_config
-  142  less /var/log/dnf.log 
-  143  grep -A 4 -B 10 -i gnome-remote-desktop /var/log/dnf.log
-  144  grep --help
-  145  q
-  146  cat dane 
-  147  qrep -e ^a -e ^i
-  148  grep -e ^a -e ^i
-  149  grep -e ^a -e ^i dane 
-  150  grep -e ^ala -e ^i dane 
-  151  grep -e ^ala -e ^i -e "^ ala" dane 
-  152  tr --help
-  153  vi dane
-  154  grep -e ^ala -e ^i -e "^ ala" dane 
-  155  sed 's/^ //g' dane
-  156  cat dane 
-  157  sed 's/^ //g' dane | grep -e ^ala -e ^i
-  158  sed 's/^ //g' dane | grep -e ^ala -e ^i -e sh$
-  159  sed -i 's/^ //g' dane
-  160  grep -e ^ala -e ^i -e sh$
-  161  grep -e ^ala -e ^i -e sh$ dane 
-  162  vi dane 
-  163  sed -i 's/ $//g' dane
-  164  grep -e ^ala -e ^i -e sh$ dane 
-  165  cat dane
-  166  cat dane | tr -d '\n' 
-  167  cat dane | tr -d ' ' 
-  168  cat dane | tr [:upper:]
-  169  cat dane | tr '[:upper:]'
-  170  cat dane | tr '[:upper:][:lower:]'
-  171  cat dane
-  172  cat dane | tr '[:lower:][:upper:]'
-  173  man tr
-  174  cat dane | tr '[:lower:]' '[:upper:]'
-  175  grep -e ^ala -e ^i -e sh$ dane 
-  176  grep -E 'tutaj|sh' dane
-  177  grep -e tutaj -e sh dane
-  178  grep -E '(z|k|b)sh' dane
-  179  grep -E '(z|k|ba)sh' dane
-  180  grep -E '(z|k|ba)sh$' dane
-  181  vi wina
-  182  grep -i fra 
-  183  grep -i fra wina
-  184  grep -i fra wina | awk -F "," '{ print $1 "," $3 "," $4}'
-  185  grep -i -e fra -e CENA wina | awk -F "," '{ print $1 "," $3 "," $4}'
-  186  grep -vi fra  
-  187  grep -vi fra  wina 
-  188  grep -vi -e fra -e cena wina 
-  189  grep -vi -e fra -e cena wina | wc -l
-  190  echo -n "Win innych niż z Francji jest: "; grep -vi -e fra -e cena wina | wc -l
-  191  sed '2,3s/wytrawe/półwytrawne/gI' wina 
-  192  sed '2,3s/wytrawne/półwytrawne/gI' wina 
-  193  cat wina 
-  194  sed '1,5p' wina 
-  195  sed -n '1,5p' wina 
-  196  sed -n '5,$p' wina 
-  197  sed '5i\Nowe wino włoskie,Ita,czerwone słodkie,50.00' wina 
-  198  sed '4a\Nowe wino włoskie,Ita,czerwone słodkie,50.00' wina 
-  199  echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00" >> wina
-  200  cat wina
-  201  echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00"; cat wina > noweWina
-  202  vi noweWina 
-  203  echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00" > noweWina; cat wina >> noweWina
-  204  vi noweWina 
-  205  grep cena -i -n
-  206  grep cena -i -n noweWina 
-  207  grep cena -i -n wina 
-  208  grep cena -i -n wina | awk -F ":" '{print $1}'
-  209  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00" wina
-  210  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed '$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
-  211  grep cena -i -n wina | awk -F ":" '{print $1}'
-  212  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`
-  213  echo $NR_LINI 
-  214  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed '\$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
-  215  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINI"a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
-  216  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINI"a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00 wina
-  217  NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "${NR_LINI}a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00" wina
-  218  tar --help
-  219  tar -cvf archiwum.tar /usr/bin/
-  220  ls -lah
-  221  ls -la
-  222  ls -lah
-  223  tar -cvfz archiwum.tar.gz /usr/bin/
-  224  ls -lah
-  225  df -h
-  226  tar -cvfz archiwum.tar.gz /usr/bin/
-  227  tar -cvfz archiwum.tar.gz /usr/bin/*
-  228  tar cvfz archiwum.tar.gz /usr/bin/
-  229  ls -lah
-  230  tar cvfj archiwum.tar.bz2 /usr/bin/
-  231  ls -lah
-  232  tar cvfJ archiwum.tar.bz2 /usr/bin/
-  233  tar --help
-  234  ls -lah
-  235  mv archiwum.tar.bz2 archiwum.tar.xz
-  236  tar cvfj archiwum.tar.bz2 /usr/bin/
-  237  ls -lah
-  238  bzip2 --help
-  239  ls -lah
-  240  bzip2 -z -9 archiwum2.tar /usr/bin/
-  241  bzip2 -z -9 archiwum2.tar /usr/bin/*
-  242  ls -lah
-  243  bzip2 --help
-  244  history
-  245  history > day1-history
-  246  git clone https://github.com/mariano-italiano/lin2_Nov.git
-  247  cd lin2_Nov/
-  248  mv ../day1-history .
-  249  history > day1-history
+vi /etc/ssh/sshd_config
+useradd adam
+passwd adam
+systemctl restart sshd
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+ls -la
+ls -la > plik1
+cat plik1
+ls -la 1> plik1
+echo $?
+less plik1
+ ls- la
+ls -la
+ls -la 1>> plik1
+less plik1
+cat test
+echo $?
+cat test > output
+cat output
+cat test 2> output
+cat output
+vi output
+sort < output
+cat output | sort
+sort 0< output
+ps -u student
+vi lab1.sh
+env
+ls -la ~/
+ls -la $HOME/
+vi lab1.sh
+chmod +x lab1.sh
+./lab1.sh
+ls -la
+ls -la copy.log
+cat copy.log
+cat copy.err
+man cp
+ls -la
+cat output
+grep ^test output
+grep te?t output
+echo "To jest przyklad"
+echo "To jest przyklad"  | sed '/jest/p'
+echo "To jest przyklad"  | sed -n '/jest/p'
+sed --help
+echo "To jest przyklad"  | sed -n '/auto/p'
+echo "To jest przyklad"  | awk  '/auto/{ print $0}'
+echo "To jest przyklad"  | awk  '/przyklad/{ print $0}'
+echo "To jest przyklad"  | awk  '/Przyklad/{ print $0}'
+vi dane
+cat dane
+vi dane
+cat dane
+vi dane
+cat dane
+sed -n '/.sh/p' dane
+vi dane
+sed -n '/.sh/p' dane
+sed -n '/[cbdw]ash/p' dane
+awk '/[cbdw]ash/{ print $0 } ' dane
+ps -ef
+ps -ef | awk '{ print $3 } '
+awk '/[cbdw]ash/{ print $0 } ' dane
+cat dane
+awk '/[cbdw]ash/{ print $0 } ' dane
+awk '/^[cbdw]ash/{ print $0 } ' dane
+sed -n '/^[cbdw]ash/p' dane
+sed -n '/[^cbdw]ash/p' dane
+sed -n '/[cbdw]ash/p' dane
+echo "To jest przyklad" | sed -n '/[Tt]o/p'
+echo "To jest przyklad" | sed -n '/[^Tt]o/p'
+sed -n '/^[cbdw]sh/p' dane
+sed -n '/[^cbdw]sh/p' dane
+cat dane
+sed -n '/[0-9]/p' dane
+sed -n '/[a-zA-Z]/p' dane
+echo "To jest przyklad" | sed -n '/t?/p'
+echo "To jest przyklad" | sed -n '/[Tt]?/p'
+echo "To jest przyklad" | sed -n '/[Tt]o?/p'
+echo "To jest przyklad" | sed -n -r '/[Tt]o?/p'
+man sed
+echo "To jest przyklad" | sed -n -r '/[Tt]?/p'
+man sed
+echo "To jest przyklad" | grep -E "[Tt]?"
+alias
+echo "To jest przyklad" | grep -E "[Tt]o?"
+echo "To jest przyklad" | grep -E "[Tt]o+"
+echo "To jest przyklad" | grep -E "[Tt]+"
+cat dane
+sed 's/ksh/bash/' dane
+sed 's//bin/bash/bin/zsh/' dane
+sed 's|/bin/bash|/bin/zsh|' dane
+sed 's2/bin/bash2/bin/zsh2' dane
+cat dane
+sed -i 's2/bin/bash2/bin/zsh2' dane
+cat dane
+sed 's/foo/nowefoo/' dane
+sed 's/foo/nowefoo/gI' dane
+sed 's/\b[0-9]\{4\}\b/liczba 4-cyfrowa/gI' dane
+sed 's/\b[0-9]\{2\}\b/liczba 4-cyfrowa/gI' dane
+sed 's/\b[0-9]\{4\}\b/liczba 4-cyfrowa &/gI' dane
+cat dane | grep linia
+cat dane | grep foo
+cat dane | grep foo -i
+grep -i foo dane
+grep -v foo dane
+vi /etc/ssh/sshd_config
+grep -v "#" /etc/ssh/sshd_config
+less /var/log/dnf.log
+grep -A 4 -B 10 -i gnome-remote-desktop /var/log/dnf.log
+grep --help
+q
+cat dane
+qrep -e ^a -e ^i
+grep -e ^a -e ^i
+grep -e ^a -e ^i dane
+grep -e ^ala -e ^i dane
+grep -e ^ala -e ^i -e "^ ala" dane
+tr --help
+vi dane
+grep -e ^ala -e ^i -e "^ ala" dane
+sed 's/^ //g' dane
+cat dane
+sed 's/^ //g' dane | grep -e ^ala -e ^i
+sed 's/^ //g' dane | grep -e ^ala -e ^i -e sh$
+sed -i 's/^ //g' dane
+grep -e ^ala -e ^i -e sh$
+grep -e ^ala -e ^i -e sh$ dane
+vi dane
+sed -i 's/ $//g' dane
+grep -e ^ala -e ^i -e sh$ dane
+cat dane
+cat dane | tr -d '\n'
+cat dane | tr -d ' '
+cat dane | tr [:upper:]
+cat dane | tr '[:upper:]'
+cat dane | tr '[:upper:][:lower:]'
+cat dane
+cat dane | tr '[:lower:][:upper:]'
+man tr
+cat dane | tr '[:lower:]' '[:upper:]'
+grep -e ^ala -e ^i -e sh$ dane
+grep -E 'tutaj|sh' dane
+grep -e tutaj -e sh dane
+grep -E '(z|k|b)sh' dane
+grep -E '(z|k|ba)sh' dane
+grep -E '(z|k|ba)sh$' dane
+vi wina
+grep -i fra
+grep -i fra wina
+grep -i fra wina | awk -F "," '{ print $1 "," $3 "," $4}'
+grep -i -e fra -e CENA wina | awk -F "," '{ print $1 "," $3 "," $4}'
+grep -vi fra
+grep -vi fra  wina
+grep -vi -e fra -e cena wina
+grep -vi -e fra -e cena wina | wc -l
+echo -n "Win innych niż z Francji jest: "; grep -vi -e fra -e cena wina | wc -l
+sed '2,3s/wytrawe/półwytrawne/gI' wina
+sed '2,3s/wytrawne/półwytrawne/gI' wina
+cat wina
+sed '1,5p' wina
+sed -n '1,5p' wina
+sed -n '5,$p' wina
+sed '5i\Nowe wino włoskie,Ita,czerwone słodkie,50.00' wina
+sed '4a\Nowe wino włoskie,Ita,czerwone słodkie,50.00' wina
+echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00" >> wina
+cat wina
+echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00"; cat wina > noweWina
+vi noweWina
+echo "Nowe wino włoskie,Ita,czerwone słodkie,50.00" > noweWina; cat wina >> noweWina
+vi noweWina
+grep cena -i -n
+grep cena -i -n noweWina
+grep cena -i -n wina
+grep cena -i -n wina | awk -F ":" '{print $1}'
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00" wina
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed '$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
+grep cena -i -n wina | awk -F ":" '{print $1}'
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`
+echo $NR_LINI
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed '\$NR_LINIa\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINI"a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00' wina
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "$NR_LINI"a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00 wina
+NR_LINI=`grep cena -i -n wina | awk -F ":" '{print $1}'`; sed "${NR_LINI}a\Nowe wino włoskie 2,Ita,czerwone słodkie,50.00" wina
+tar --help
+tar -cvf archiwum.tar /usr/bin/
+ls -lah
+ls -la
+ls -lah
+tar -cvfz archiwum.tar.gz /usr/bin/
+ls -lah
+df -h
+tar -cvfz archiwum.tar.gz /usr/bin/
+tar -cvfz archiwum.tar.gz /usr/bin/*
+tar cvfz archiwum.tar.gz /usr/bin/
+ls -lah
+tar cvfj archiwum.tar.bz2 /usr/bin/
+ls -lah
+tar cvfJ archiwum.tar.bz2 /usr/bin/
+tar --help
+ls -lah
+mv archiwum.tar.bz2 archiwum.tar.xz
+tar cvfj archiwum.tar.bz2 /usr/bin/
+ls -lah
+bzip2 --help
+ls -lah
+bzip2 -z -9 archiwum2.tar /usr/bin/
+bzip2 -z -9 archiwum2.tar /usr/bin/*
+ls -lah
+bzip2 --help
+bzip2 -z -k --best archiwum2.tar.bz2 /usr/bin/*
+ls -lah
+tar cfjv archiwum-original.tar.bz2 /usr/bin/
+ls -lah
+tar cfzv archiwum.tar.gz /usr/bin/
+ls
+ls -l
+ls -lh
+mkdir tar-bin
+cd tar-bin/
+gzip --help
+bizp2 --help
+bzip2 --help
+gzip -d ../archiwum.tar.gz
+ls -la
+cd ..
+ls -la
+tar xvf archiwum.tar
+ls -la
+tar xfv archiwum-original.tar.bz2
+zip --help
+ip
+mkdir /tmp/backup
+cd /usr/
+tar cvfz /tmp/backup/include.tar.gz include/
+du -sh /usr/include/
+du -sh /usr/include/*
+tar tvf /tmp/backup/include.tar.gz
+mkdir /tmp/restore
+cd /tmp/restore
+tar xvf ../backup/include.tar.gz
+ls -la
+tree include/
+diff ../backup/ .
+diff ../backup/ ../restore/
+diff /usr/include/ ../restore/
+diff /usr/include/ ../restore/include/
+nmap --help
+nmap 192.168.1.100/32
+cat /etc/services
+cat /etc/services | grep -i -e smb -e samba
+cat /etc/services | grep -i dns
+cat /etc/services | grep -i named
+cat /etc/services | grep -i http
+cat /etc/services | grep -i 80
+cat /etc/services | grep -i nfs
+nmap 192.168.1.0/24
+nmap 192.168.1.100/32
+telnet
+telnet 192.168.1.100 25
+dnf remove telnet
+curl -v telnet 192.168.1.100:22
+curl -v telnet://192.168.1.100:22
+curl -v telnet://192.168.1.100:25
+curl -v telnet://192.168.1.100:80
+curl -v telnet://192.168.1.100:443
+curl -v telnet://192.168.1.100:80
+traceroute
+traceroute 192.168.1.100
+traceroute -I 192.168.1.100
+traceroute -I google.com
+traceroute google.com
+traceroute wp.pl
+traceroute -I wp.pl
+ethtool
+ethtool  -S
+ethtool -s
+ethtool -S ens33
+ip a s
+ip a
+ip addr show
+ping localhost
+ping 127.0.0.1
+vi /etc/hosts
+ifup ens33
+ifconfig
+ip a
+ip addr add --help
+ip addr add 192.168.1.190/24 dev ens33
+ip a
+ifconfig
+ifconfig | 192.168.1.190
+ifconfig | grep 192.168.1.190
+ip a| grep 192.168.1.190
+ip a
+ip -s link
+curl -v telnet://192.168.1.100:80
+ip -s link
+ethtool -S ens33
+netstat
+cd /dev/
+ls -la
+cd /etc/udev/
+ls -la
+vi udev.conf
+cd /sys/class/net/
+ls -la
+lspci
+lspci --help
+lspci -nk
+cd
+netstat -vatnlup
+netstat --help
+netstat -vatlup
+netstat -vatnlup
+ss -vatnulp
+ss -vatulp
+ss -vatnup
+ss -vatnul
+ss -atnulp
+tcpdump --help
+man tcpdump
+tcpdump host k8s-master.home
+tcpdump -i ens33
+tcpdump -i ens33 dst k8s-master.home
+tcpdump -i ens33 dst k8s-master.home -w traffic-k8s-master.pcap
+ls -la
+ls -lah
+dns install wireshark -y
+dnf install wireshark -y
+tcpdump -i ens33 dst k8s-master.home tcp port 22 -w traffic2-ssh.pcap
+tcpdump -i ens33 tcp port 22 -w traffic2-ssh.pcap
+iostat
+watch ostat
+watch iostat
+netstat
+netstat -i
+ip a
+vmstat
+vmstat 5
+vmstat 1
+sar -A
+dnf install systat -y
+dnf install sysstat -y
+less /var/log/sa
+ls -la /var/log/sa
+sar -q
+systemctl sysstat status
+systemctl status sysstat
+systemctl start sysstat
+systemctl status sysstat
+sar -A
+ls -la /var/log/sa
+sar -A
+ls -la /var/log/sa
+ls -la /var/log/sa/sa18
+cat /var/log/sa/sa18
+PuTTYPuTTYPuTTYPuTTYPuTTYPuTTYPuTTYq
+sar -A
+top
+htop
+dnf install htop -y
+dnf install htop
+dnf install epel-release
+dnf install htop
+htop
+top
+htop
+sar -A
+sar -B 3 3
+sar -q
+sar -W
+sar -b
+uptime
+
