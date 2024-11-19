@@ -1,0 +1,12 @@
+[Unit]
+Description=My custom web service on Docker
+After=docker.service
+Wants=docker.service
+
+[Service]
+ExecStart=/bin/docker start -a webserver1
+ExecStop=/bin/docker stop -t 2 webserver1
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Custom script for lab 5
+After=network.service
+
+[Service]
+ExecStart=/usr/bin/script.sh -o start
+ExecStop=/usr/bin/script.sh -o stop
+
+[Install]
+WantedBy=default.target

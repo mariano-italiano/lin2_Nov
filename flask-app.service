@@ -1,0 +1,12 @@
+[Unit]
+Description=My Flask application
+After=network.service
+Wants=network.service
+
+[Service]
+ExecStart=/bin/python3 /home/student/python-app/flask-app.py
+User=student
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
