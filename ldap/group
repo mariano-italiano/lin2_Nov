@@ -1,0 +1,9 @@
+marcin:x:1001:testuser
+nowaGrupa2:x:1002:
+devops:x:1003:marcin
+testuser1:x:1051:
+finanse:x:1052:finansista,jacek
+ksiegowosc:x:1053:ksiegowy
+ksiegowy:x:1054:
+finansista:x:1055:
+jacek:x:1056:

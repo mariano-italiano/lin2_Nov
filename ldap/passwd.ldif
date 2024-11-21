@@ -1,0 +1,83 @@
+dn: uid=student,ou=Users,dc=lab,dc=local
+uid: student
+cn: Student
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$7wdvGeH7LR.rupEG$qnvvFYf93qb7A9gKDPoVhlT7EMaVdlwLgUd4WiDnAJJI4VVPDCRtBvpROHxyt2aqN2rYtFbIMIgAdg61SIJ.k1
+shadowLastChange: 20047
+shadowMax: 99999
+shadowWarning: 14
+loginShell: /bin/bash
+uidNumber: 10000
+gidNumber: 12000
+homeDirectory: /home/student
+gecos: Student
+
+dn: uid=marcin,ou=Users,dc=lab,dc=local
+uid: marcin
+cn: marcin
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$xjJP8kNQgFkk9fwR$0X7oDon/Xk5e1XoCsQyUzh/ygFrFBD/6relhkk0VH0V8KscI5BoNuVbAkl4ezGI88gsJzxamEKGkc3vRjbIte/
+shadowLastChange: 20048
+shadowMax: 99999
+shadowWarning: 7
+loginShell: /bin/bash
+uidNumber: 10001
+gidNumber: 12000
+homeDirectory: /home/marcin
+
+dn: uid=testuser,ou=Users,dc=lab,dc=local
+uid: testuser
+cn: Testowy user dziwny No.12345
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$LRpCAxJAIJ39VG01$k55923Sf/M0DLSVjyj/TCw48WxcQ0/BjyLkwLFRtU7UjTubP79Dt3z71hE1Id.X1X.D.WPQO4h8IryzSO4jvP.
+shadowLastChange: 20048
+shadowMax: 99999
+shadowWarning: 7
+loginShell: /bin/sh
+uidNumber: 10050
+gidNumber: 12000
+homeDirectory: /var/testuser
+gecos: Testowy user dziwny No.12345
+
+dn: uid=testuser1,ou=Users,dc=lab,dc=local
+uid: testuser1
+cn: testuser1
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$Qh0cd/GF8OtcyNhk$Q.3ECzVRwXVg6/xfjX8CB.Xy9GujCT1aFQ66nVWTs5D4dGAQ5D3n/kz7wlJSYCiDxe1o/CnlVzxug7c9RHxm1/
+shadowLastChange: 20048
+shadowMax: 99999
+shadowWarning: 7
+shadowExpire: 19844
+loginShell: /bin/ksh
+uidNumber: 10051
+gidNumber: 12000
+homeDirectory: /home/testuser1
+
+dn: uid=jacek,ou=Users,dc=lab,dc=local
+uid: jacek
+cn: jacek
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt}$6$HVBNVzDi62Pc5TYU$53SnQaCeEoH.oZvfIzfgLhsgfQ4Ez2j6MpfN4GNm7wSosqzem/EV98nOgy157XSc0k0IMV.tt0D2FFnPVXJo3.
+shadowLastChange: 20048
+shadowMax: 99999
+shadowWarning: 7
+loginShell: /bin/bash
+uidNumber: 10054
+gidNumber: 12001
+homeDirectory: /home/jacek
+

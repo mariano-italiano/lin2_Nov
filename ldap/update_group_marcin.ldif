@@ -1,0 +1,4 @@
+dn: cn=marcin,ou=Groups,dc=lab,dc=local
+changetype: modify
+replace: gidNumber
+gidNumber: 12002 

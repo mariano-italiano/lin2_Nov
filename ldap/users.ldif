@@ -1,0 +1,19 @@
+# User Adam
+dn: uid=adam,ou=Users,dc=lab,dc=local
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: adam
+uid: adam
+uidNumber: 16000
+gidNumber: 12000
+homeDirectory: /home/adam
+loginShell: /bin/bash
+gecos: Adam
+userPassword: {crypt}x
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+

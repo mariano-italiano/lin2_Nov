@@ -1,0 +1,68 @@
+dn: cn=marcin,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: marcin
+userPassword: {crypt}x
+gidNumber: 10001
+memberUid: testuser
+
+dn: cn=nowaGrupa2,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: nowaGrupa2
+userPassword: {crypt}x
+gidNumber: 10002
+
+dn: cn=devops,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: devops
+userPassword: {crypt}x
+gidNumber: 10003
+memberUid: marcin
+
+dn: cn=testuser1,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: testuser1
+userPassword: {crypt}x
+gidNumber: 10051
+
+dn: cn=finanse,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: finanse
+userPassword: {crypt}x
+gidNumber: 10052
+memberUid: finansista
+memberUid: jacek
+
+dn: cn=ksiegowosc,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: ksiegowosc
+userPassword: {crypt}x
+gidNumber: 10053
+memberUid: ksiegowy
+
+dn: cn=ksiegowy,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: ksiegowy
+userPassword: {crypt}x
+gidNumber: 10054
+
+dn: cn=finansista,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: finansista
+userPassword: {crypt}x
+gidNumber: 10055
+
+dn: cn=jacek,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: jacek
+userPassword: {crypt}x
+gidNumber: 10056
+

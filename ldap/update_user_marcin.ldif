@@ -1,0 +1,4 @@
+dn: uid=marcin,ou=Users,dc=lab,dc=local
+changetype: modify
+replace: homeDirectory
+homeDirectory: /home/marcinDyrektor

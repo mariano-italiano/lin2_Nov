@@ -1,0 +1,11 @@
+# Grupa Dev
+dn: cn=Dev,ou=Groups,dc=lab,dc=local
+objectClass: top
+objectClass: posixGroup
+gidNumber: 12000
+
+# Grupa Prod
+dn: cn=Prod,ou=Groups,dc=lab,dc=local
+objectClass: top
+objectClass: posixGroup
+gidNumber: 12001

@@ -1,0 +1,5 @@
+
+# Dodanie dodatkowego ou o nazwie Servers
+dn: ou=Servers,dc=lab,dc=local
+objectClass: organizationalUnit
+ou: Servers
