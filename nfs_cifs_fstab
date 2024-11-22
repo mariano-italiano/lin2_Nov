@@ -1,0 +1,18 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/mapper/vgubuntu-root /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/sda2 during installation
+UUID=435C-B42F  /boot/efi       vfat    umask=0077      0       1
+/dev/mapper/vgubuntu-swap_1 none            swap    sw              0       0
+
+# MONTOWANIE NFSa
+192.168.1.90:/nfs-share/Production /nfs nfs defaults,x-systemd.automount,x-systemd.idle-timeout=60s 0 0
+
+#MONOWANIE CIFSa
+//192.168.1.90/devops /cifs cifs _netdev,credentials=/root/smbpass 0 0
+
