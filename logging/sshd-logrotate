@@ -1,0 +1,10 @@
+/var/log/sshd.log* {
+	compress
+	size 1K
+	maxage 30
+	rotate 5
+	notifempty
+	missingok 
+	copytruncate
+}
+

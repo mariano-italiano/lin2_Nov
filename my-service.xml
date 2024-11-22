@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Application1</short>
+  <description>My Custom service for application 1.</description>
+  <port protocol="tcp" port="122"/>
+  <port protocol="udp" port="53"/>
+  <port protocol="tcp" port="53"/>
+</service>
