@@ -1,0 +1,281 @@
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+root@centos9:~$ iptables -F
+root@centos9:~$ iptables -P INPUT DROP
+root@centos9:~$ iptables -P OUTPUT DROP
+root@centos9:~$ iptables -P FORWARD DROP
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 49 packets, 10251 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 3 packets, 196 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+root@centos9:~$ 
+root@centos9:~$ 
+root@centos9:~$ iptables -A INPUT -i lo -j ACCEPT 
+root@centos9:~$ iptables -A OUTPUT -o lo -j ACCEPT 
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 426 packets, 106K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 2040 packets, 155K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+root@centos9:~$ iptables -A INPUT -p tcp --dport 22 -j ACCEPT 
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 732 packets, 183K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+  464 40256 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 2040 packets, 155K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+  464 40256 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+root@centos9:~$ iptables -A OUTPUT -m state --state=ESTABLISHED,RELATED -j ACCEPT 
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 1127 packets, 282K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 1184  105K ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+   28  4276 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 2051 packets, 156K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 1184  105K ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+   23  4593 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ iptables -I OUTPUT 2 -p udp --dport 53 -j ACCEPT 
+root@centos9:~$ iptables -I OUTPUT 2 -p tdp --dport 53 -j ACCEPT 
+iptables v1.8.10 (nf_tables): unknown protocol "tdp" specified
+Try `iptables -h' or 'iptables --help' for more information.
+root@centos9:~$ iptables -I OUTPUT 2 -p tcp --dport 53 -j ACCEPT 
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ vi /etc/resolv.conf 
+root@centos9:~$ iptables -A OUTPUT -d 192.168.1.1 -j ACCEPT 
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ iptables -I INPUT 2 -m state --state=ESTABLISHED,RELATED -j ACCEPT 
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ iptables -I INPUT 5 -p tcp --dport 53 -j ACCEPT 
+iptables: Index of insertion too big.
+root@centos9:~$ iptables -I INPUT 3 -p tcp --dport 53 -j ACCEPT 
+root@centos9:~$ iptables -I INPUT 3 -p udp --dport 53 -j ACCEPT 
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ ping 192.168.1.1
+PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=1.19 ms
+64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.792 ms
+^C
+--- 192.168.1.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1005ms
+rtt min/avg/max/mdev = 0.792/0.990/1.189/0.198 ms
+root@centos9:~$ ping 192.168.1.90
+PING 192.168.1.90 (192.168.1.90) 56(84) bytes of data.
+64 bytes from 192.168.1.90: icmp_seq=1 ttl=64 time=0.027 ms
+64 bytes from 192.168.1.90: icmp_seq=2 ttl=64 time=0.049 ms
+^C
+--- 192.168.1.90 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1009ms
+rtt min/avg/max/mdev = 0.027/0.038/0.049/0.011 ms
+root@centos9:~$ ping 192.168.1.70
+PING 192.168.1.70 (192.168.1.70) 56(84) bytes of data.
+^C
+--- 192.168.1.70 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2090ms
+
+root@centos9:~$ iptables -L -v- n
+iptables v1.8.10 (nf_tables): unknown option "--"
+Try `iptables -h' or 'iptables --help' for more information.
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 2111 packets, 539K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 2951  261K ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    2   168 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+   28  4276 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 2055 packets, 156K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 2951  261K ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+   24  4677 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    1    84 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+root@centos9:~$ iptables -A OUTPUT -p ^C
+root@centos9:~$ 
+root@centos9:~$ 
+root@centos9:~$ iptables-save > /etc/sysconfig/iptables
+root@centos9:~$ vi /etc/sysconfig/iptables
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 2812 packets, 712K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 3319  294K ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    2   168 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+   28  4276 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 2059 packets, 157K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 3319  294K ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+   24  4677 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    1    84 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+root@centos9:~$ iptables-restore < /etc/sysconfig/iptables
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 3 packets, 127 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+root@centos9:~$ ping google.com
+ping: google.com: Name or service not known
+root@centos9:~$ nslookup goo
+^[[A^C
+root@centos9:~$ nslookup google.com
+^C
+root@centos9:~$ vi /etc/resolv.conf 
+root@centos9:~$ nslookup google.com
+Server:		192.168.1.1
+Address:	192.168.1.1#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 216.58.209.14
+Name:	google.com
+Address: 2a00:1450:401b:808::200e
+
+root@centos9:~$ ping google.com
+PING google.com (216.58.209.14) 56(84) bytes of data.
+64 bytes from sof01s12-in-f14.1e100.net (216.58.209.14): icmp_seq=1 ttl=118 time=10.1 ms
+64 bytes from sof01s12-in-f14.1e100.net (216.58.209.14): icmp_seq=2 ttl=118 time=9.90 ms
+64 bytes from sof01s12-in-f14.1e100.net (216.58.209.14): icmp_seq=3 ttl=118 time=12.3 ms
+^C
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2007ms
+rtt min/avg/max/mdev = 9.901/10.764/12.304/1.091 ms
+root@centos9:~$ iptables -A OUTPUT -d 216.58.209.14 -j ACCEPT 
+root@centos9:~$ iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT 
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 835 packets, 210K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   39  2373 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+  916 1214K ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 337 packets, 34811 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   39  2373 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+  592  119K ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    1    84 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+  173 11541 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+    1    60 ACCEPT     0    --  *      *       0.0.0.0/0            216.58.209.14       
+   17  1020 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+root@centos9:~$ iptables-save > /etc/sysconfig/iptables
+root@centos9:~$ cp /etc/sysconfig/iptables lin2_Nov/
+root@centos9:~$ vi lin2_Nov/iptables 
+root@centos9:~$ 
+root@centos9:~$ 
+root@centos9:~$ vi /etc/sysconfig/iptables
+root@centos9:~$ iptables-restore < /etc/sysconfig/iptables
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 11 packets, 2756 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+root@centos9:~$ vi /etc/sysconfig/iptables
+root@centos9:~$ iptables-restore < /etc/sysconfig/iptables
+root@centos9:~$ iptables-restore < /etc/sysconfig/iptables
+root@centos9:~$ iptables -L -v -n
+Chain INPUT (policy DROP 12 packets, 2985 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  lo     *       0.0.0.0/0            0.0.0.0/0           
+    6   546 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 4 packets, 240 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     0    --  *      lo      0.0.0.0/0            0.0.0.0/0           
+   12   858 ACCEPT     0    --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+    0     0 ACCEPT     1    --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     17   --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     0    --  *      *       0.0.0.0/0            192.168.1.1         
+    0     0 ACCEPT     6    --  *      *       0.0.0.0/0            188.210.221.82       tcp dpt:443
